@@ -1,0 +1,12 @@
+{
+  "name": "smart-campus-assignment-04",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "test:baseline": "node --test tests/baseline.test.js",
+    "start": "node server.js"
+  },
+  "engines": { "node": ">=22" }
+}
