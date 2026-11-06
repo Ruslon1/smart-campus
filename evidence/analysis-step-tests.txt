@@ -1,0 +1,16 @@
+✔ baseline AC1 rejects invalid and past time (0.345833ms)
+✔ baseline AC2 permits exactly 120 minutes (0.061667ms)
+✔ baseline AC2 rejects 121 minutes (0.052917ms)
+✔ baseline AC3 rejects a blocked room (0.035375ms)
+✔ baseline AC4 permits touching intervals (0.267667ms)
+✔ baseline AC4 rejects overlap (0.042541ms)
+✔ baseline AC5 does not mutate booking data (0.057792ms)
+✔ baseline preview validates duration (0.077916ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 39.16475
