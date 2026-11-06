@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Find a campus room with the space and equipment you need.">
+<title>Smart Campus · Find your space</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+<header class="topbar"><a class="brand" href="/" aria-label="Smart Campus home"><span class="brand-icon" aria-hidden="true">S</span>Smart Campus</a><span class="header-note">ROOM FINDER <span class="live-dot"></span> Campus spaces</span></header>
+<main>
+<div class="intro"><div><p class="eyebrow">SPACE TO DO YOUR BEST WORK</p><h1>Find your space.</h1><p class="lead">A study session, a team workshop, your next big idea.<br>There’s a room for it.</p></div><div class="date-note"><span class="calendar-icon" aria-hidden="true">06</span><div><strong id="fixed-date"></strong><br><span>Today’s demo time · 09:00</span></div></div></div>
+<div class="workspace">
+<aside class="panel filters"><div class="panel-title"><h2>Your requirements</h2><span class="small-label">01</span></div>
+<form id="requirements" novalidate>
+<label class="field-label" for="attendees">How many people?</label><div class="input-wrap"><input id="attendees" name="attendees" type="number" min="1" max="999" step="1" value="6" inputmode="numeric"><span>people</span></div>
+<p id="attendees-error" class="field-error" hidden>Enter a whole number of at least 1.</p>
+<fieldset><legend>What do you need?</legend><div id="equipment-options"></div></fieldset>
+<div class="divider"></div><h3>Choose a time</h3><p class="muted small">Same day · Up to 2 hours</p>
+<div class="time-fields"><label for="start">From<input id="start" name="start" type="time" value="11:00" required></label><label for="end">Until<input id="end" name="end" type="time" value="12:00" required></label></div>
+<p id="time-error" class="field-error" hidden></p>
+<button type="submit" class="primary">Check availability <span aria-hidden="true">↗</span></button>
+<button type="button" class="reset" id="reset">Reset requirements</button>
+</form><p class="demo-note">Fictional campus data. Availability checks do not create or change bookings.</p></aside>
+<section class="results" aria-labelledby="rooms-heading"><div class="results-heading"><div><p class="eyebrow">THE RIGHT FIT</p><h2 id="rooms-heading">Explore rooms <span id="room-count"></span></h2></div><span class="muted small">Select a room to check</span></div>
+<div id="room-list" class="room-grid"></div>
+<div id="empty-state" class="empty-state" hidden><span aria-hidden="true">⌕</span><h3>No rooms match</h3><p>Try fewer attendees or remove an equipment requirement.</p></div>
+<section class="panel detail" aria-labelledby="detail-heading"><div class="panel-title"><h2 id="detail-heading">Your selected room</h2><span class="small-label">02</span></div><div id="selected-detail"></div><div id="availability" role="status" aria-live="polite" aria-atomic="true"></div></section>
+</section></div>
+<footer><span>SMART CAMPUS / ROOM AVAILABILITY</span><span>All times are campus local time · Same-day demo</span></footer>
+</main><script type="module" src="src/app.js"></script></body></html>
