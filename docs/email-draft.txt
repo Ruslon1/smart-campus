@@ -1,0 +1,13 @@
+To: kibo.kz.contact.01@gmail.com
+Subject: Software Engineering - Assignment #04 - Rakhimov Ruslan
+
+Dear Teaching Assistants,
+
+Please find attached my Software Engineering Assignment #04 submission on the Smart Campus Room Availability Checker.
+
+The package includes the initial and final source code, README, automated tests and execution results, analysis and refactoring report, quality comparison, and AI-use record with reflection.
+
+Student: Rakhimov Ruslan
+
+Best regards,
+Rakhimov Ruslan

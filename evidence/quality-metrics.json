@@ -1,0 +1,21 @@
+{
+  "method": "Direct source inspection; duration maximum predicate counted in baseline preview/check and final validateInterval. Production JS module count excludes server, tests and preserved baseline.",
+  "baseline": {
+    "test_passed": 8,
+    "test_total": 8,
+    "production_js_modules": 1,
+    "duration_validation_locations": 2
+  },
+  "final": {
+    "combined_unit_passed": 41,
+    "combined_unit_total": 41,
+    "browser_passed": 14,
+    "browser_total": 14,
+    "all_passed": 55,
+    "all_total": 55,
+    "production_js_modules": 5,
+    "duration_validation_locations": 1
+  },
+  "duplicate_logic_locations_removed": 1,
+  "comparison_note": "Final suite includes 8 preserved baseline tests; 33 final domain/state and 14 UI checks are additions, not 55 checks that all existed at baseline."
+}

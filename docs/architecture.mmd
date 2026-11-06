@@ -1,0 +1,20 @@
+flowchart TD
+  subgraph Before
+    Browser1[Browser] --> Mono[baseline/app.js
+Data + preview + check + events]
+  end
+  subgraph After
+    Browser2[Browser] --> UI[src/app.js
+Events and presentation]
+    UI --> State[src/state.js
+Selection and derived results]
+    UI --> Availability[src/availability.js
+Shared time and booking rules]
+    State --> Availability
+    State --> Filter[src/filtering.js
+Capacity and ALL equipment]
+    State --> Data[src/data.js
+Frozen rooms and fixed clock]
+    Availability --> Data
+    UI --> Data
+  end
