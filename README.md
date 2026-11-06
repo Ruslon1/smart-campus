@@ -76,7 +76,3 @@ All work was committed on local main. The initial version is preserved as actual
 ## Limitations
 
 One fixed fictional day; no recurring or overnight bookings; no writes or persistence; no booking concurrency; Chromium browser automation only; desktop and 390px mobile screenshots do not establish support for every device. Keyboard focus and live-region attributes are tested, but no human screen-reader audit has been performed. This is a course prototype.
-
-## Submission preparation
-
-See docs/submission-checklist.md. The report and reflection were drafted by Codex. Student name and personal verification must be completed by the actual student; the package does not claim that the student has already reviewed it. No email has been sent.

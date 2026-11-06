@@ -1,0 +1,53 @@
+
+> smart-campus-assignment-04@1.0.0 test
+> node --test tests/*.test.js
+
+✔ baseline AC1 rejects invalid and past time (0.362208ms)
+✔ baseline AC2 permits exactly 120 minutes (0.060334ms)
+✔ baseline AC2 rejects 121 minutes (0.037958ms)
+✔ baseline AC3 rejects a blocked room (0.035958ms)
+✔ baseline AC4 permits touching intervals (0.385ms)
+✔ baseline AC4 rejects overlap (0.080917ms)
+✔ baseline AC5 does not mutate booking data (0.084042ms)
+✔ baseline preview validates duration (0.106458ms)
+✔ data has four rooms with distinct IDs and complete fields (0.493042ms)
+✔ AC1 strict HH:mm parsing rejects malformed times (0.138875ms)
+✔ AC1 rejects past start (0.103125ms)
+✔ AC1 permits start exactly at fixed current time (0.090083ms)
+✔ AC1 rejects equal endpoints (0.056041ms)
+✔ AC1 rejects reverse and overnight intervals (0.039542ms)
+✔ AC1 rejects empty time input (0.048334ms)
+✔ AC2 permits exactly 120 minutes (0.041833ms)
+✔ AC2 rejects 121 minutes (0.050208ms)
+✔ AC2 permits one minute (0.08175ms)
+✔ AC3 and F3 blocked room never available (0.05925ms)
+✔ AC4 touching previous booking end is allowed (0.044417ms)
+✔ AC4 touching next booking start is allowed (0.035833ms)
+✔ AC4 overlapping one minute is rejected (0.089375ms)
+✔ AC4 interval contained in booking is rejected (0.043417ms)
+✔ AC4 interval containing booking is rejected (0.052334ms)
+✔ AC4 identical interval is rejected (0.035042ms)
+✔ AC5 checks and filters leave fixtures unchanged (0.109875ms)
+✔ AC5 nested booking fixtures are frozen (0.165417ms)
+✔ F1 exact capacity is included (0.021291ms)
+✔ F1 insufficient capacity is excluded (0.0255ms)
+✔ F1 invalid attendee counts produce no matches (0.280209ms)
+✔ F2 all required equipment must be present (0.067708ms)
+✔ F2 single equipment match (0.022541ms)
+✔ F2 no equipment requirement returns all capacity matches (0.018708ms)
+✔ F2 capacity and equipment combine (0.01825ms)
+✔ F3 blocked room stays visible but result is blocked (0.025958ms)
+✔ F4 empty catalog yields clear empty result (0.027625ms)
+✔ F4 impossible equipment combination yields no rooms (0.024083ms)
+✔ F5 room switching recomputes availability using own bookings (0.035666ms)
+✔ F5 filtering away selection selects first matching room (0.026916ms)
+✔ F5 time changes recompute selected room availability (0.029625ms)
+✔ regression same single-room outcomes before and after refactoring (0.107125ms)
+ℹ tests 41
+ℹ suites 0
+ℹ pass 41
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 48.104375

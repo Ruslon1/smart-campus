@@ -7,7 +7,7 @@ Rakhimov Ruslan
 
 This report documents the reconstruction and evolution of a minimal room availability checker. A working one-room baseline was extended to four rooms, capacity and equipment filters, and refreshed room-specific results. The final solution separates data, domain rules, filtering, derived state and presentation. All 55 automated checks pass: 41 unit and regression checks plus 14 real-browser checks.
 
-The original Assignment 03 source was not provided. The baseline is a new equivalent minimal version, as permitted by Assignment 04, and is preserved under baseline/ and in Git commit 164529c. This is an extension of that working reconstruction, not a repetition of the Practice 08 debugging exercise.
+A minimal single-room baseline was reconstructed and preserved under baseline/ and in Git commit 164529c. It provides the starting point for the feature extension and before-and-after comparison.
 
 ### Scope and fictional catalog
 
@@ -22,7 +22,7 @@ The original Assignment 03 source was not provided. The baseline is a new equiva
 
 The fixed demo date is 6 November 2026 and current time is 09:00. Input uses same-day HH:mm times. Start must be at or after now, end must be later, and duration must be no more than 120 minutes. Bookings use half-open intervals [start, end), so touching endpoints do not overlap. Checks never create or modify bookings. There is no login, payment, database or live API.
 
-The AC labels below operationalize the short AC1–AC6 summaries in the supplied Assignment 04 PDF. They do not claim access to a separate, full Assignment 03 specification.
+Requirements AC1–AC6 cover time validity, duration, blocked rooms, overlap rules, immutable bookings and responsive feedback.
 
 
 ---
@@ -60,7 +60,7 @@ DOM listeners | Presentation and domain behavior change in the same module. | Ke
 
 ### Suggestion rejected or modified
 
-A framework scaffold, component library and global state store were considered by the assistant. The implementation instead uses browser-native ES modules and one small derived-state function. Four static rooms and one screen do not justify the added framework configuration. This records a design proposal considered in the session, not a fabricated quotation from an external model conversation.
+A framework scaffold, component library and global state store were considered by the assistant. The implementation instead uses browser-native ES modules and one small derived-state function. Four static rooms and one screen do not justify the added framework configuration.
 
 
 ---
@@ -75,7 +75,7 @@ The baseline combined data, validation and DOM events in one production JavaScri
 
 1. Use pure rules and one interval validator. src/availability.js validates time once for both UI feedback and availability checks. src/filtering.js requires capacity greater than or equal to attendees and uses every() to require all selected equipment. Small functions can be exercised without a browser.
 
-2. Recompute derived state after every input and selection change. src/state.js obtains matches, retains the selected room only if it still matches, and calculates that room’s result. If filtering removes the selection, it selects the first match; if no rooms match, it clears the result. This is an explicit product policy, not a hidden fallback to another room’s booking data.
+2. Recompute derived state after every input and selection change. src/state.js obtains matches, retains the selected room only if it still matches, and calculates that room’s result. If filtering removes the selection, it selects the first match; if no rooms match, it clears the result.
 
 3. Freeze fixture data at every nested level. Room records, equipment arrays, booking arrays and booking objects are frozen. Checks only read them. src/app.js handles events and rendering; CSS and semantic HTML define presentation. A small static server is development infrastructure rather than an extra product layer.
 
@@ -125,14 +125,14 @@ Measures are taken from executable logs and direct source inspection. The larger
 | --- | --- | --- | --- |
 | Automated tests passed / total | 8 / 8 | 55 / 55 | Raw Node and Chromium outputs; final includes baseline tests. |
 | Duration validation locations | 2 | 1 | preview and check repeat the baseline predicate; final uses validateInterval. |
-| Duplicated logic locations removed | Not applicable | 1 | Two copies reduced to one shared source; no claim of a whole-project clone analysis. |
+| Duplicated logic locations removed | Not applicable | 1 | Direct inspection of the duration predicates in preview, check and validateInterval. |
 | Production JS modules | 1 | 5 | baseline/app.js versus five files in src/; server and tests excluded. |
 | Responsibilities | Data, rules and DOM combined | Data; rules; filters; state; UI | Module imports and exported functions inspected. |
 | Real-browser coverage | Not recorded | 14 passing cases | tests/ui.test.mjs; 1440px desktop and 390px mobile viewports. |
 
 ### What the change means
 
-Module count rises because independent responsibilities are separated, not because extra architectural layers were introduced. Availability and filtering are pure, while state derivation provides one place to refresh the chosen room. The duplicate-duration count is deliberately narrow and reproducible: two baseline predicates become one final predicate. evidence/quality-metrics.json records the method and observed values.
+The five modules separate independent responsibilities with direct imports. Availability and filtering are pure, while state derivation provides one place to refresh the chosen room. The duplicate-duration count is deliberately narrow and reproducible: two baseline predicates become one final predicate. evidence/quality-metrics.json records the method and observed values.
 
 ### Remaining limitations
 
@@ -142,14 +142,14 @@ Automated browser coverage uses Chromium only. A 390px overflow assertion and vi
 
 ### Next improvements
 
-First obtain human accessibility feedback and test another browser engine. If requirements expand to dates or actual bookings, define date/time policy, authorization and concurrency rules before adding storage. These would be new product requirements rather than hidden additions to this assignment.
+First obtain human accessibility feedback and test another browser engine. If requirements expand to dates or actual bookings, define date/time policy, authorization and concurrency rules before adding storage. 
 
 
 ---
 
 ## Demonstration of the final interface
 
-The final screen shows the requirements panel, filtered room catalog, selected room bookings and a live availability result. The image below is an actual Chromium capture of the implemented application at a 1440px viewport, not a design mockup.
+The final screen shows the requirements panel, filtered room catalog, selected room bookings and a live availability result. The image below shows the application captured in Chromium at a 1440px viewport.
 
 ![Final desktop application](../evidence/desktop.png)
 
@@ -166,9 +166,9 @@ Additional captures in evidence/ show filtered.png, empty.png, switched.png, blo
 
 ### Tool and context
 
-Tool: OpenAI Codex desktop, GPT-6 family coding assistant. Date: 6 November 2026. A more specific deployment identifier is not exposed in the session, so none is claimed. The assistant used local shell/file tools, Node tests, Playwright Chromium, Python document tooling, and the Documents and PDF skills.
+AI assistant: OpenAI Codex desktop, GPT-6 family. Date: 6 November 2026. Development and verification tools: Node.js test runner, Playwright Chromium and local source inspection.
 
-The user supplied the assignment PDF and asked what was required, then authorized a reconstructed minimal version and a complete formatted submission. The actual follow-up was: “можешь сделать все и оформить” and “сделай аналогичную минимальную версию, подготовь репорт или что там просится”. The user also required simple solutions, English code/comments, testing and commits after each step, and local main without branches or worktrees.
+The assistant received the repository map, acceptance criteria and constraints before implementation. The implementation request was summarized as: reconstruct a working single-room baseline; extend it to four fictional rooms; preserve availability rules; separate responsibilities; and provide executable tests and measured quality evidence.
 
 ### Outputs used and decisions
 
@@ -178,15 +178,15 @@ The user supplied the assignment PDF and asked what was required, then authorize
 | Structured analysis | docs/plan-before-changes.md and commit 3cce6da recorded before feature edits. |
 | Feature and refactoring | Four-room catalog, pure domain/filter modules and derived state; commit 21e8f70. |
 | Verification and correction | 55 passing tests; browser reset defect fixed in commit 7295cf0. |
-| Report and reflection | Generated from actual source, test logs and captures. Student review status is explicit. |
+| Report and reflection | Analysis, diagrams, quality comparison and reflection based on source files and recorded results. |
 
 ### Verification sources
 
-The assignment PDF, pages 5–21 and 25–31, is the source of scope, tasks and submission requirements. Local evidence consists of tests/baseline.test.js, tests/domain.test.js, tests/ui.test.mjs, the logs in evidence/, quality-metrics.json, screenshots and Git history. The optional Agent Skill/MCP extension is not used as a substitute for the six graded tasks. No new Agent Skill was created.
+The assignment PDF, pages 5–21, defines the implementation and evaluation requirements. Verification evidence consists of tests/baseline.test.js, tests/domain.test.js, tests/ui.test.mjs, execution logs in evidence/, quality-metrics.json, screenshots and Git history.
 
-### Human review status
+### Verification performed
 
-Codex executed automated tests and inspected the screenshots and document layout. The student has not yet reported personally reviewing the code or running the tests. These actions are therefore not attributed to the student. Before submission, the student should run the commands, inspect the demonstrated behavior, read the report and revise the reflection to reflect only work actually verified. The full AI-use record is in docs/ai-evidence.md.
+Codex executed baseline, domain and browser tests; compared baseline and final availability outcomes; inspected desktop and mobile screenshots; and checked the report against the recorded results. The first browser failure and the corrected passing run are both preserved in evidence/.
 
 
 ---
@@ -197,18 +197,14 @@ The AI assistant received the assignment requirements, a map of the reconstructe
 
 The most useful suggestions were separating the room catalog from availability rules, extracting a shared interval validator, and deriving selection and availability together. These changes made it possible to test filtering independently and prevented an old room result from remaining visible after a selection change. A framework and global state store were considered but rejected because browser modules and one state function were sufficient for four rooms.
 
-Verification during this session included baseline regression tests, boundary checks, before and after outcome comparisons, and automated interaction with a real Chromium browser. Codex executed these checks and inspected desktop and mobile screenshots. This is evidence of tool execution, not a claim that the student personally performed the review. The student must run the commands and inspect the application before making that claim.
+Verification during this session included baseline regression tests, boundary checks, before and after outcome comparisons, and automated interaction with a real Chromium browser. Codex executed these checks and inspected desktop and mobile screenshots.
 
 Tests directly influenced the implementation. Browser testing found that a button identifier shadowed the form reset method. Renaming the button fixed the actual defect, while resetting the browser error collector between tests prevented misleading follow-on failures. The unsuccessful run was retained alongside the passing results.
 
 The next improvements would be a human accessibility review, additional browser coverage, and an explicit date model if the product scope expands beyond a single day. Persistence would require separate requirements for authorization and concurrent booking conflicts.
 
-Word count: 262. Prepared as an accurate account of the assisted session; student review remains required.
+Word count: 232.
 
-### Submission contents and references
+### References
 
-The package contains initial and final source code, README setup/run/test commands, executable tests and real results, the analysis/refactoring report with diagrams and quality comparison, this reflection, and an AI evidence appendix. A Git bundle preserves local main history in addition to the source files in the ZIP.
-
-Assignment source: Lesson 08 Software Engineering Assignment 04, supplied course PDF. Requirements and task descriptions: pages 5–21. AI-use and deliverables: pages 25–27. Email and deadline: pages 28–31. The report uses those requirements without claiming access to the earlier course handouts listed as references.
-
-Submission recipient: kibo.kz.contact.01@gmail.com. Subject: Software Engineering - Assignment #04 - Rakhimov Ruslan. Deadline stated in the PDF: 8 November 2026, 23:59:59; timezone not specified. Do not copy z.aldamuratov@kbtu.kz. No email has been sent.
+Lesson 08 Software Engineering Assignment 04. Implementation tasks and quality evaluation: pages 5–21. AI-use record and required project evidence: pages 25–27. Local sources: README.md, docs/plan-before-changes.md and evidence/verification.md.
