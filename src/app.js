@@ -48,5 +48,5 @@ roomList.addEventListener('click', event => {
   render();
   roomList.querySelector(`[data-room-id="${selectedId}"]`).focus();
 });
-document.querySelector('#reset').addEventListener('click', () => { form.reset(); selectedId = rooms[0].id; render(); });
+document.querySelector('#reset-requirements').addEventListener('click', () => { form.reset(); selectedId = rooms[0].id; render(); });
 render();

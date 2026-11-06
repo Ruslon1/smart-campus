@@ -1,0 +1,26 @@
+
+> smart-campus-assignment-04@1.0.0 test:ui
+> node --test tests/ui.test.mjs
+
+✔ UI AC6 initial screen is labelled and shows four rooms (202.356042ms)
+✔ UI F1 exact capacity includes room and one extra attendee excludes it (77.131792ms)
+✔ UI F2 requires all selected equipment (133.527666ms)
+✔ UI F3 blocked room displays maintenance and never available (119.778458ms)
+✔ UI F4 impossible equipment shows clear empty state and clears stale result (129.073083ms)
+✔ UI F5 switching rooms refreshes bookings and availability immediately (128.989125ms)
+✔ UI AC1 changing time rejects past time and reversed interval (60.620791ms)
+✔ UI AC2 exactly 120 minutes passes and 121 fails (60.236084ms)
+✔ UI AC4 touching booking works and overlap fails (61.871625ms)
+✔ UI invalid attendees give explicit error (64.379791ms)
+✔ UI reset restores default selection and filters (95.767542ms)
+✔ UI AC5 submitting checks does not mutate booking data (120.849875ms)
+✔ UI AC6 keyboard selection preserves focus after rerender (65.722625ms)
+✔ UI AC6 mobile layout at 390px has no horizontal overflow (126.389708ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1645.591375
